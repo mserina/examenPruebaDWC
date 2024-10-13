@@ -1,5 +1,5 @@
 // Añadir las importaciones de las funciones que crean la imagen, la tabla, el párrafo y l lista
-import { creaImagen, creaParrafo, creaLista } from "./funciones.js";
+import { creaImagen, creaParrafo, creaLista, limpiar, creaTabla } from "./funciones.js";
 
 
 // Variables para guardar la zona y la entrada
@@ -35,25 +35,33 @@ function seleInput() {
 la entrada seleccionada y lo coloca en la zona seleccionada. */
 function enviar() {
     // Limpiar la zona seleccionada (para que no se coloquen más de una entrada en la zona)
+    const limpiarZona = document.getElementById(zona);
+    limpiarZona.innerText = " ";
 
     /* comprueba cual es la zona seleccionada y ejecuta la función de creación
     correspondiente (switch)*/
 
+    let zonaElemento = document.getElementById(zona);
+
     switch(entrada){
         case ("img"): {
             document.getElementById(zona).append(creaImagen());
+            break;
         }
 
         case ("table"):{
-
+            document.getElementById(zona).append(creaTabla());
+            break;
         }
 
         case ("list"):{
             document.getElementById(zona).append(creaLista());
+            break;
         }
 
         case ("p"):{
             document.getElementById(zona).append(creaParrafo());
+            break;
         }
             
     }
@@ -71,3 +79,4 @@ function limpiarContenedores(){
 window.seleZona = seleZona;
 window.seleInput = seleInput;
 window.enviar = enviar;
+window.limpiarContenedores = limpiarContenedores;

@@ -1,10 +1,16 @@
 export function creaImagen() {
     // Función que crea un elemento imagen, completa sus clases y el src (puedes usar la imagen adjunta u otra)
-    const crearImagen = document.createElement("img");
-    creaImagen.src = "../imagenes/elcano.jpg";
-
+    const nuevaImagen = document.createElement("img");
+    nuevaImagen.src = "../imagenes/elcano.jpg";
+    nuevaImagen.classList.add('img-fluid');
+    
+    //Para que la altura se adapte al contenedor D
+    if(zona.value == 'D'){
+        nuevaImagen.style.height = '12rem';
+    }
+   
     // Devuelve el elemento imagen
-    return creaImagen;
+    return nuevaImagen;
 }
 
 export function creaTabla() {
@@ -16,14 +22,35 @@ export function creaTabla() {
         { cat: 5, vel: 'Más de 250' },
     ]
     // Crea una tabla con los datos de este array
+    const table = document.createElement("table");
+   
+    arrayHuracanes.forEach(function(filas){
+        //aqui se controlaran las filas
+        const tr = document.createElement("tr");
+        table.append(tr);
+
+        //Aqui se inserta las celdas de 'cat'
+       const tdCat = document.createElement("td");
+       tdCat.textContent = "cat:" + filas.cat;
+       tr.appendChild(tdCat);
+
+       //Aqui se inserta las celdas de 'vel'
+       const tdVel = document.createElement("td");
+       tdVel.textContent = "    vel: " + filas.vel;
+       tr.appendChild(tdVel);
+    });
+
+    return table;
+
 }
 
-export function creaParrafo(zona) {
+export function creaParrafo() {
     // Crea un párrafo con texto genérico
     const parrafo = document.createElement("p");
     parrafo.innerHTML = "parrafo";
-    zona.document.appendChild(parrafo);
+    return parrafo;
 }
+
 
 export function creaLista() {
     const lista = ['Bananas', 'Manzanas', 'Melocotones', 'Naranjas'];
@@ -31,14 +58,16 @@ export function creaLista() {
 
     const estructuraLista = document.createElement("ul");
     lista.className = "list-group";
-    zona.document.appendChild(estructuraLista);
+
 
     lista.forEach(element => {
         const elemento = document.createElement("li");
         elemento.className = "list-group-item";
         elemento.innerText = element;
-        estructuraLista.document.appendChild(elemento);
+        estructuraLista.appendChild(elemento);
     });
+
+    return estructuraLista;
 
 }
 
